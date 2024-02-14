@@ -36,6 +36,7 @@ else
  sed  -i "s|ZM_DB_USER=.*|ZM_DB_USER=${ZM_DB_USER:-zmuser}|" /etc/zm/zm.conf
  sed  -i "s|ZM_DB_PASS=.*|ZM_DB_PASS=${ZM_DB_PASS:-zmpass}|" /etc/zm/zm.conf
  sed  -i "s|ZM_DB_PORT=.*|ZM_DB_PORT=${ZM_DB_PORT:-3306}|" /etc/zm/zm.conf
+ sed  -i "s|ZM_DIR_EVENTS=.*|ZM_DIR_EVENTS=${ZM_DIR_EVENTS}:-/var/cache/zoneminder/events|" /etc/zm/zm.conf
  grep -q ZM_DB_PORT /etc/zm/zm.conf || echo ZM_DB_PORT=${ZM_DB_PORT:-3306} >> /etc/zm/zm.conf
 
 
@@ -75,6 +76,10 @@ else
   # [ -f /var/cache/zoneminder/configured ]
   if [[ $EMPTYDATABASE != 0 ]]; then
         echo 'database already configured.'
+	if [ ! -e $ZM_DIR_EVENTS]; then
+	mkdir /var/cache/zoneminder/events
+	touch /var/cache/zoneminder/events/1
+	fi
 	zmupdate.pl -nointeractive
         rm -rf /var/run/zm/* 
 	zmpkg.pl start >>/var/log/zm/zm.log 2>&1
