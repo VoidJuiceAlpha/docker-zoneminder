@@ -66,7 +66,7 @@ else
   fi
 
   # waiting for mysql
-  while !(mysql_ready)
+  while ! (mysql_ready)
   do
     sleep 3
     echo "waiting for mysql ..."
@@ -77,7 +77,7 @@ else
   # [ -f /var/cache/zoneminder/configured ]
   if [[ $EMPTYDATABASE != 0 ]]; then
         echo 'database already configured.'
-	if [ ! -e $ZM_DIR_EVENTS]; then
+	if [ ! -e $ZM_DIR_EVENTS ]; then
 	mkdir /var/cache/zoneminder/events
 	touch /var/cache/zoneminder/events/1
 	fi
