@@ -128,4 +128,4 @@ VOLUME /var/cache/zoneminder /etc/zm /config /var/log/zm /var/lib/zoneminder/eve
 EXPOSE 80 9000 6802
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
-
+# hehe boop

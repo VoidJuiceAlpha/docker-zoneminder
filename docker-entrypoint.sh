@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#hehe boop
 set -e
 
 #check if already configured or not
